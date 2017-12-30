@@ -6,49 +6,16 @@
 </div>
 
 
-<div class="container">
+<div class="container home-container">
 
-  <br>
-  <h1>New releases</h1>
-  <hr>
+  <app-gallery [movies]="releases | slice:0:6"
+               [title]="'New releases'"></app-gallery>
 
-  <div class="row" *ngIf="releases">
+  <app-gallery [movies]="populars | slice:0:6"
+               [title]="'Populars'"></app-gallery>
 
-    <div class="col-sm-6">
-      <div class="row">
-        <div class="col-md-12 div-pic-1"
-          [ngStyle]="{'background-image': 'url('+(releases[0] | movieImage)+')'}">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 div-pic-2"
-             [ngStyle]="{'background-image': 'url('+(releases[1] | movieImage)+')'}">
-        </div>
-        <div class="col-sm-6 div-pic-2"
-             [ngStyle]="{'background-image': 'url('+(releases[2] | movieImage)+')'}">
-        </div>
-      </div>
-    </div>
+  <app-gallery [movies]="popularsKids | slice:0:6"
+               [title]="'Populars kids'"></app-gallery>
 
 
-    <div class="col-sm-6">
-
-      <div class="row">
-        <div class="col-sm-6 div-pic-2"
-             [ngStyle]="{'background-image': 'url('+(releases[3] | movieImage)+')'}">
-        </div>
-        <div class="col-sm-6 div-pic-2"
-             [ngStyle]="{'background-image': 'url('+(releases[4] | movieImage)+')'}">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 div-pic-1"
-             [ngStyle]="{'background-image': 'url('+(releases[5] | movieImage)+')'}">
-        </div>
-      </div>
-    </div>
-
-
-  </div>
 </div>

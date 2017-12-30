@@ -39,6 +39,6 @@ export class MoviesService {
   // GET - Search movie
   searchMovie ( text: string ): Observable<any> {
     return this.http
-      .get(`${environment.apiURL}/search/movie?query=${text}sort_by=popularity.desc&api_key=${environment.apiKey}&language=es`);
+      .get(`${environment.apiURL}/search/movie?query=${text}&sort_by=popularity.desc&api_key=${environment.apiKey}&language=es`);
   }
 }

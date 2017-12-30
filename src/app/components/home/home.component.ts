@@ -10,11 +10,19 @@ import { MoviesService } from '../../services/movies.service';
 export class HomeComponent implements OnInit {
 
   releases: any;
+  populars: any;
+  popularsKids: any;
 
   constructor( public moviesService: MoviesService) {
 
     this.moviesService.getNewReleases()
       .subscribe(res => this.releases = res.results);
+
+    this.moviesService.getPopularMovies()
+      .subscribe(res => this.populars = res.results);
+
+    this.moviesService.getPopularKidsMovies()
+      .subscribe(res => this.popularsKids = res.results);
 
   }
 
