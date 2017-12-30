@@ -1,3 +1,54 @@
-<p>
-  home works!
-</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Movies App</h1>
+    <p class="lead">This is a movies app.</p>
+  </div>
+</div>
+
+
+<div class="container">
+
+  <br>
+  <h1>New releases</h1>
+  <hr>
+
+  <div class="row" *ngIf="releases">
+
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-md-12 div-pic-1"
+          [ngStyle]="{'background-image': 'url('+(releases[0] | movieImage)+')'}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 div-pic-2"
+             [ngStyle]="{'background-image': 'url('+(releases[1] | movieImage)+')'}">
+        </div>
+        <div class="col-sm-6 div-pic-2"
+             [ngStyle]="{'background-image': 'url('+(releases[2] | movieImage)+')'}">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6">
+
+      <div class="row">
+        <div class="col-sm-6 div-pic-2"
+             [ngStyle]="{'background-image': 'url('+(releases[3] | movieImage)+')'}">
+        </div>
+        <div class="col-sm-6 div-pic-2"
+             [ngStyle]="{'background-image': 'url('+(releases[4] | movieImage)+')'}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 div-pic-1"
+             [ngStyle]="{'background-image': 'url('+(releases[5] | movieImage)+')'}">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
