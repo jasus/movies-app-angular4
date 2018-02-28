@@ -63,13 +63,13 @@ const slideRight = [
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('slideRight', [
-      // state(`next${new RegExp('[0-9]*')}`, style({})),
-      transition('* => *', slideRight),
-    ]),
-    trigger('slideLeft', [
-      // state(`back${new RegExp('[0-9]*')}`, style({})),
-      transition('* => *', slideLeft),
+    trigger('routerAnimations', [
+      transition('home => movie', slideRight),
+      transition('home => search', slideRight),
+      transition('movie => home', slideRight),
+      transition('movie => search', slideRight),
+      transition('search => home', slideLeft),
+      transition('search => movie', slideLeft),
     ])
   ]
 })
@@ -104,77 +104,10 @@ export class AppComponent {
 
    }
 
-  // getSlideRight(outlet) {
-  //   if (outlet.activated && outlet.activatedRoute.component.name !== this.currentComponent) {
-  //       this.currentComponent = outlet.activatedRoute.component.name;
-  //       console.log(this.currentComponent);
-  //       if (this.isBack) {
-  //           this.isBack = false;
-  //           this.animation = 'back';
-  //       } else {
-  //           this.animation = 'next';
-  //       }
-  //       this.num++;
-
-  //       if (this.currentComponent === 'SearchComponent') {
-  //           this.animation = 'back';
-  //       }
-  //   }
-
-  //   // let animation = outlet.activatedRouteData.animation;
-  //   console.log(this.animation);
-  //   // console.log(this.router.navigations.value.source);
-  //   return this.animation + this.num;
-  // }
-
-  getSlideRight(outlet) {
-    if (outlet.activated && outlet.activatedRoute.component.name !== this.currentComponentRight) {
-      this.currentComponentRight = outlet.activatedRoute.component.name;
-      console.log(this.currentComponentRight);
-      // if (this.isBack) {
-      //     this.isBack = false;
-      //     this.animation = 'back';
-      // } else {
-      //     this.animation = 'next';
-      // }
-      this.numRight++;
-
-      if (this.currentComponentRight !== 'SearchComponent') {
-          this.animationRight = 'next' + this.numRight;
-      } else {
-        this.animationRight = null;
-      }
-    }
-
-    // let animation = outlet.activatedRouteData.animation;
-    console.log(this.animationRight);
-    // console.log(this.router.navigations.value.source);
-    return this.animationRight; // + this.num;
+  prepareRouteTransition(outlet) {
+    const animation = outlet.activatedRouteData['animation'] || {};
+    return animation['value'] || null;
   }
 
-  getSlideLeft(outlet) {
-    if (outlet.activated && outlet.activatedRoute.component.name !== this.currentComponentLeft) {
-        this.currentComponentLeft = outlet.activatedRoute.component.name;
-        console.log(this.currentComponentLeft);
-        // if (this.isBack) {
-        //     this.isBack = false;
-        //     this.animation = 'back';
-        // } else {
-        //     this.animation = 'next';
-        // }
-        this.numLeft++;
-
-        if (this.currentComponentLeft === 'SearchComponent') {
-            this.animationLeft = 'back' + this.numLeft;
-        } else {
-          this.animationLeft = null;
-        }
-    }
-
-    // let animation = outlet.activatedRouteData.animation;
-    console.log(this.animationLeft);
-    // console.log(this.router.navigations.value.source);
-    return this.animationLeft; // + this.num;
-  }
 
 }

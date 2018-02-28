@@ -2,6 +2,6 @@
 
 <app-navbar></app-navbar>
 
-<div [@slideRight]="getSlideRight(route)" [@slideLeft]="getSlideLeft(route)" >
+<div [@routerAnimations]="prepareRouteTransition(route)" >
     <router-outlet #route="outlet"></router-outlet>
 </div>
