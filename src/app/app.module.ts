@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { APP_ROUTING } from './app.routes';
 
@@ -35,7 +36,8 @@ import { GalleryComponent } from './components/home/gallery.component';
     FormsModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    APP_ROUTING
+    APP_ROUTING,
+    BrowserAnimationsModule
   ],
   providers: [
     MoviesService

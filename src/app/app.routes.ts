@@ -6,9 +6,9 @@ import { SearchComponent } from './components/search/search.component';
 
 
 const app_routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'movie', component: MovieComponent },
-  { path: 'search', component: SearchComponent },
+  { path: 'home', component: HomeComponent, data: { animation: 'home' } },
+  { path: 'movie', component: MovieComponent, data: { animation: 'movie' } },
+  { path: 'search', component: SearchComponent, data: { animation: 'search' } },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
