@@ -2,6 +2,6 @@
 
 <app-navbar></app-navbar>
 
-<div [@routerAnimations]="prepareRouteTransition(route)" >
+<div [@routerAnimation]="routerAnimation(route)" (@routerAnimation.done)="routerAnimationDone()">
     <router-outlet #route="outlet"></router-outlet>
 </div>

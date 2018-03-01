@@ -39,74 +39,55 @@ const slideRight = [
   ])
 ];
 
-//   transition('home => movie', slideRight),
-    //   transition('movie => home', slideLeft),
-    //   transition('search => movie', slideRight),
-    //   transition('movie => search', slideLeft),
-    //   transition('search => home', slideLeft),
-        // state('right', style({})),
-        // transition('* => right', slideRight),
-        // state('back', style({})),
-        // transition('* => back', slideLeft),
-
-        // trigger('slideRight', [
-        //   state(`next${new RegExp('[0-9]*')}`, style({})),
-        //     transition('* => *', slideRight),
-        // ]),
-        // trigger('slideLeft', [
-        //   state(`back${new RegExp('[0-9]*')}`, style({})),
-        //     transition('* => *', slideLeft),
-        // ])
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('routerAnimations', [
-      transition('home => movie', slideRight),
-      transition('home => search', slideRight),
-      transition('movie => home', slideRight),
-      transition('movie => search', slideRight),
-      transition('search => home', slideLeft),
-      transition('search => movie', slideLeft),
+    trigger('routerAnimation', [
+      transition('* => reset', slideRight),
+      transition('* => next', slideRight),
+      transition('* => back', slideLeft),
     ])
   ]
 })
 export class AppComponent {
   title = 'app';
   private currentComponent: string;
-  private currentComponentRight: string;
-  private currentComponentLeft: string;
   private isBack: boolean;
-  private animationRight: string;
-  private animationLeft: string;
-  private num: number;
-  private numRight: number;
-  private numLeft: number;
-  private random: number;
+  private animation: string;
 
-  constructor(private location: PlatformLocation, private router: Router, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private location: PlatformLocation, private router: Router) {
 
     this.currentComponent = '';
-    this.currentComponentRight = '';
-    this.currentComponentLeft = '';
-    this.changeDetectorRef = changeDetectorRef;
-    this.numRight = 0;
-    this.numLeft = 0;
-    this.random = Math.floor(Math.random() * 6) + 1;
+    this.isBack = false;
+    this.animation = 'reset';
 
     this.location.onPopState(() => {
 
         console.log('pressed back!');
+        this.animation = 'back';
         this.isBack = true;
     });
 
    }
 
-  prepareRouteTransition(outlet) {
-    const animation = outlet.activatedRouteData['animation'] || {};
-    return animation['value'] || null;
+  public routerAnimation(outlet) {
+    if(outlet.activated && outlet.activatedRoute.component.name !== this.currentComponent){
+      this.currentComponent = outlet.activatedRoute.component.name;
+      if(!this.isBack){
+        this.animation = 'next';
+      }
+      if(this.currentComponent === 'SearchComponent'){
+        this.animation = 'back';
+      }
+    }
+    console.log(this.animation);
+    return this.animation;
+  }
+
+  public routerAnimationDone(){
+    this.animation = 'reset';
   }
 
 
